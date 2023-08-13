@@ -3,17 +3,16 @@
  * Please, make sure to read the "09 An-important-rule.md" file in exercises-info folder
  */
 
-
 /**
  * @task
- * Create a function `iterate` that prints the first function argument 
+ * Create a function `iterate` that prints the first function argument
  * (an integer) to it and then returns that argument + 1
  * The function must be exported
  */
 
 export function iterate(arg) {
-  // Your code goes here...
-  
+  console.log(arg);
+  return arg + 1;
 }
 
 /**
@@ -23,35 +22,39 @@ export function iterate(arg) {
  */
 
 export function alwaysThrows() {
-  // Your code goes here...
-
+  throw new Error("OH NOES");
 }
 
 /**
  * @task
- * Create a function `onReject` that 
+ * Create a function `onReject` that
  * * Takes an argument that can be either error object or a string value
- * * Logs the error object message property value in the console if the argument is an object
+ * * Logs the error object message property value in the console if the argument is
+ * an object
  * * Logs the argument value in the console in any other case
  * The function must be exported
  */
 
-export function onReject() {
-  // Your code goes here...
-
+export function onReject(error) {
+  if (typeof error === "object") {
+    console.log(error.message);
+  } else {
+    console.log(error);
+  }
 }
-
 /**
  * @task
  * Create a promise variable that follows the list:
  * * Stores the resolved promise using `Promise.resolve`
- * * Wraps your iterate method, then a series of iterations that attempts to perform `iterate` a total of 10 times.
+ * * Wraps your iterate method, then a series of iterations that attempts to perform
+ * `iterate` a total of 10 times.
  * * Attach a rejection handler at the bottom of your chain to print the
  * `error.message` using `console.log` with the onReject function
  * * Insert a call to `alwaysThrows` after your 5th call of `iterate`
  * If everything was done correctly the promise will:
  * * log (1, 2, 3, 4, 5)
- * * throw an error that will be handled by the catch() block and log the error message
+ * * throw an error that will be handled by the catch() block and log the error
+ *  message
  * Example: export const promise = Promise.resolve(<Your_resolved_code>)
  *                                  .then(<First_async_iterate_call>)
  *                                  .then(<Second_async_iterate_call>)
@@ -63,9 +66,19 @@ export function onReject() {
  */
 
 // Your code goes here...
-export const promise;
-
-
+export const promise = Promise.resolve()
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((rej) => alwaysThrows(rej))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .then((res) => iterate(res))
+  .catch((e) => console.log(e));
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-9"

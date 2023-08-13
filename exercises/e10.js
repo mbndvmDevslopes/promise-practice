@@ -24,49 +24,67 @@ export const promiseArr = [promise1, promise2, promise3, promise4];
  */
 
 // Your code goes here...
-export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
+export const handlePromise1 = Promise.all(promiseArr).catch((e) => e);
 
 /**
  * @task
  * * Create the handlePromise2 function that follows:
  * * Takes an array of promises as an argument
- * * Returns a Promise that handles the array of promises (the argument) with one of the following methods:
+ * * Returns a Promise that handles the array of promises (the argument)
+ * with one of the following methods:
  * * * .all()
  * * * .any()
  * * * .allSettled()
- * * to return the resolved value of promise3 if the promiseArr array was passed as the argument
- * * Don't forget to set the handlers that will return the resolved value or the rejection reason
+ * * to return the resolved value of promise3 if the promiseArr array was passed as
+ * the argument
+ * * Don't forget to set the handlers that will return the resolved value or the
+ * rejection reason
  * * Make sure you don't use this method in other tasks of this exercise file!
  * !!! The function must be exported !!!
  */
 
-// Your code goes here...
+export const handlePromise2 = () => {
+  return Promise.any(promiseArr)
+    .then((res) => res)
+    .catch((err) => console.log(err));
+};
 
 /**
  * @task
  * * Create the handlePromise3 function that follows:
  * * Takes an array of promises as an argument
- * * Returns a Promise that handles the array of promises (the argument) with one of the following methods:
+ * * Returns a Promise that handles the array of promises (the argument) with one of
+ *  the following methods:
  * * * .all()
  * * * .any()
  * * * .allSettled()
- * * to return an array of all promises statuses and values/reasons if the promiseArr array was passed as the argument
- * * Don't forget to set the handlers that will return the resolved value or the rejection reason
+ * * to return an array of all promises statuses and values/reasons if the promiseArr
+ *  array was passed as the argument
+ * * Don't forget to set the handlers that will return the resolved value or the
+ * rejection reason
  * * Make sure you don't use this method in other tasks of this exercise file!
  * !!! The function must be exported !!!
  */
 
-// Your code goes here...
+export const handlePromise3 = () => {
+  return Promise.allSettled(promiseArr)
+    .then((res) => res)
+    .catch((err) => console.log(err));
+};
 
 /**
  * @task
- * Update the filter method callback to filter out any promise that will be settled before promise4
- * so that the handlePromise4 function returns the resolved value of promise4 ('RESOLVED AGAIN')
+ * Update the filter method callback to filter out any promise that will be settled
+ * before promise4
+ * so that the handlePromise4 function returns the resolved value of promise4
+ *  ('RESOLVED AGAIN')
  * with the Promise.race() method, when the newPromiseArr is passes as the argument.
  * The value of newPromiseArr MUST have more than one promise in the array!
  */
 
-export const newPromiseArr = promiseArr.filter(/* <Your code goes here>*/);
+export const newPromiseArr = promiseArr.filter(
+  (promise) => promise === promise4
+);
 
 // Do NOT refactor or update handlePromise4 function, it's all set to work
 export const handlePromise4 = (arr) => {
