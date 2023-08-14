@@ -33,7 +33,10 @@ export const getPromise = (bool) => {
  */
 
 export const handlePromise = (promise) => {
-  return promise.then((onFulfilled) => onFulfilled).catch(() => "Uh Oh");
+  return promise.then(
+    (onFulfilled) => onFulfilled,
+    () => "Uh Oh"
+  );
 };
 
 // === TEST YOURSELF ===

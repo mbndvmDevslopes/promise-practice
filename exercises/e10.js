@@ -24,7 +24,9 @@ export const promiseArr = [promise1, promise2, promise3, promise4];
  */
 
 // Your code goes here...
-export const handlePromise1 = Promise.all(promiseArr).catch((e) => e);
+export const handlePromise1 = Promise.all(promiseArr)
+  .then((val) => val)
+  .catch((err) => err);
 
 /**
  * @task
@@ -83,14 +85,14 @@ export const handlePromise3 = () => {
  */
 
 export const newPromiseArr = promiseArr.filter(
-  (promise) => promise === promise4
+  (promise) => promise !== promise2 && promise !== promise3
 );
 
 // Do NOT refactor or update handlePromise4 function, it's all set to work
 export const handlePromise4 = (arr) => {
   return Promise.race(arr)
     .then((val) => val)
-    .catch((e) => e);
+    .catch((err) => err);
 };
 
 // === TEST YOURSELF ===
